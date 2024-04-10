@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            
+
             //Ejercicio 1a
             int numero1a;
             Console.WriteLine("-----------1a numero par o impar------------");
@@ -53,9 +53,13 @@
             {
                 Console.WriteLine("El primer numero es mayor al segundo");
             }
-            else
+            else if (num1 < num2)
             {
                 Console.WriteLine("El segundo numero es mayor al primero");
+            }
+            else
+            {
+                Console.WriteLine("Los numeros son iguales");
             }
 
             //Ejercicio 1e
@@ -114,7 +118,7 @@
                 billete5 = vuelto / 5;
                 vuelto = vuelto % 5;
             }
-            if(vuelto >= 1)
+            if (vuelto >= 1)
             {
                 billete1 = vuelto / 1;
                 vuelto = 0;
@@ -127,11 +131,12 @@
             int bg;
             int cg;
             int cuentag;
-            Console.WriteLine("Ingrese un numero para ag");
+            Console.WriteLine("Si (a - b) > c => a * b | (a -b) < c => a / b");
+            Console.WriteLine("Ingrese un numero para a");
             ag = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Ingrese un numero para bg");
+            Console.WriteLine("Ingrese un numero para b");
             bg = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Ingrese un numero para cg");
+            Console.WriteLine("Ingrese un numero para c");
             cg = Convert.ToInt32(Console.ReadLine());
             if (ag - bg > cg)
             {
@@ -142,7 +147,7 @@
                 cuentag = ag / bg;
             }
             Console.WriteLine(cuentag);
-            
+
 
             //Ejercicio 1h
             Console.WriteLine("-----------------1h obra social--------------------");
@@ -151,8 +156,11 @@
             char ch = 'C';
             char tipoSocio;
             float costoTratamiento;
-            Console.WriteLine("Ingrese su categoria A / B / C");
-            tipoSocio = char.ToUpper(char.Parse(Console.ReadLine()));
+            do
+            {
+                Console.WriteLine("Ingrese su categoria A / B / C");
+                tipoSocio = char.ToUpper(char.Parse(Console.ReadLine()));
+            } while (tipoSocio != 'A' && tipoSocio != 'B' && tipoSocio != 'C');
             Console.WriteLine("Ingrese costo tratamiento");
             costoTratamiento = Convert.ToSingle(Console.ReadLine());
             if (tipoSocio == ah)
@@ -206,7 +214,7 @@
             {
                 Console.WriteLine("No cursa");
             }
-            
+
 
             //Ejercicio 3
             Console.WriteLine("----------------- 3: edad actual usuario --------------------");
@@ -229,7 +237,7 @@
                 Console.WriteLine("Feliz cumpleaños");
             }
 
-            if (actualMonth > mes || (actualMonth>=mes && actualDay >= dia) )
+            if (actualMonth > mes || (actualMonth >= mes && actualDay >= dia))
             {
                 edadActual = actualYear - anioNacimiento;
             }
@@ -239,7 +247,7 @@
 
             }
             Console.WriteLine("La edad actual es " + edadActual);
-            
+
 
             //Ejercicio 4
             Console.WriteLine("----------------- 4: latas pintura--------------------");
@@ -267,19 +275,19 @@
             altoHabitacion = Convert.ToSingle(Console.ReadLine());
             Console.WriteLine("Ingrese largo habitacion");
             largoHabitacion = Convert.ToInt32(Console.ReadLine());
-            if(cantidadPuertas > 0)
+            if (cantidadPuertas > 0)
             {
                 superficiePuertas = (altoPuerta * anchoPuerta) * cantidadPuertas;
             }
-            if(cantidadVentanas > 0) 
+            if (cantidadVentanas > 0)
             {
                 superficieVentanas = (altoVentana * anchoVentana) * cantidadVentanas;
             }
             superficiePared = 2 * (anchoHabitacion + largoHabitacion) * altoHabitacion; // salvo piso y techo
             superficieAPintar = superficiePared - superficiePuertas - superficieVentanas;
             cantidadLatas = (int)Math.Ceiling(superficieAPintar / 12);
-            Console.WriteLine("Se necesitan " +  cantidadLatas + " latas");
-            
+            Console.WriteLine("Se necesitan " + cantidadLatas + " latas");
+
 
             //Ejercicio 5
             Console.WriteLine("----------------- 5: total a pagar y descuento en la pantalla --------------------");
@@ -334,7 +342,7 @@
                 resultado = ladoCuadrado * ladoCuadrado;
             }
             Console.WriteLine("El resultado es: " + resultado);
-            
+
 
             //Ejercicio 7
             Console.WriteLine("----------------- 7: menor y mayor de 3 numeros--------------------");
@@ -355,7 +363,8 @@
                 if (numero12 > numero13)
                 {
                     numeroMenor = numero13;
-                }else
+                }
+                else
                 {
                     numeroMenor = numero12;
                 }
@@ -375,18 +384,19 @@
             else
             {
                 numeroMayor = numero13;
-                if(numero12 > numero11)
+                if (numero12 > numero11)
                 {
                     numeroMenor = numero11;
-                } else
+                }
+                else
                 {
                     numeroMenor = numero12;
                 }
-            } 
-            
+            }
+
 
             Console.WriteLine("El numero mayor es: " + numeroMayor + " y el numero menor es: " + numeroMenor);
-            
+
 
             //Ejercicio 8
             Console.WriteLine("----------------- 8: tipo de triangulo--------------------");
@@ -401,9 +411,9 @@
             Console.WriteLine("Ingrese el tercer lado del triangulo");
             lado3 = Convert.ToInt32(Console.ReadLine());
 
-            if(lado1 != lado2)
+            if (lado1 != lado2)
             {
-                if(lado1 != lado3 && lado2 != lado3)
+                if (lado1 != lado3 && lado2 != lado3)
                 {
                     Console.WriteLine("El triangulo es escaleno");
                 }
@@ -411,17 +421,19 @@
                 {
                     Console.WriteLine("El triangulo es isosceles");
                 }
-            } else
+            }
+            else
             {
-                if(lado1 != lado3)
+                if (lado1 != lado3)
                 {
                     Console.WriteLine("El triangulo es isosceles");
-                }else
+                }
+                else
                 {
                     Console.WriteLine("El triangulo es equilatero");
                 }
             }
-            
+
 
         }
     }
