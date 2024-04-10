@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-
+            
             //Ejercicio 1a
             int numero1a;
             Console.WriteLine("-----------1a numero par o impar------------");
@@ -432,8 +432,13 @@
                     Console.WriteLine("El triangulo es equilatero");
                 }
             }
-
-
+            /*
+            TryParse
+            Console.WriteLine("Hola");
+            bool numerito = int.TryParse(Console.ReadLine(), out int res);
+            if (!numerito) Console.WriteLine("Numero no valido");
+            Console.WriteLine(res);
+            */
         }
     }
 }
