@@ -218,32 +218,32 @@
 
             //Ejercicio 3
             Console.WriteLine("----------------- 3: edad actual usuario --------------------");
-            int dia = 0;
-            int mes = 0;
+            int diaNacimiento = 0;
+            int mesNacimiento = 0;
             int anioNacimiento = 0;
             int edadActual = 0;
             Console.WriteLine("Ingrese el año de nacimiento");
             anioNacimiento = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Ingrese el dia de nacimiento");
-            dia = Convert.ToInt32(Console.ReadLine());
+            diaNacimiento = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Ingrese el mes de nacimiento");
-            mes = Convert.ToInt32(Console.ReadLine());
-            int actualYear = Convert.ToInt32(DateTime.Now.ToString("yyyy"));
-            int actualMonth = Convert.ToInt32(DateTime.Now.ToString("MM"));
-            int actualDay = Convert.ToInt32(DateTime.Now.ToString("dd"));
-            Console.WriteLine(actualYear);
-            if (mes == actualMonth && dia == actualDay)
+            mesNacimiento = Convert.ToInt32(Console.ReadLine());
+            int anioActual = Convert.ToInt32(DateTime.Now.ToString("yyyy"));
+            int mesActual = Convert.ToInt32(DateTime.Now.ToString("MM"));
+            int diaActual = Convert.ToInt32(DateTime.Now.ToString("dd"));
+            Console.WriteLine(anioActual);
+            if (mesNacimiento == mesActual && diaNacimiento == diaActual)
             {
                 Console.WriteLine("Feliz cumpleaños");
             }
 
-            if (actualMonth > mes || (actualMonth >= mes && actualDay >= dia))
+            if (mesActual > mesNacimiento || (mesActual >= mesNacimiento && diaActual >= diaNacimiento))
             {
-                edadActual = actualYear - anioNacimiento;
+                edadActual = anioActual - anioNacimiento;
             }
             else
             {
-                edadActual = actualYear - anioNacimiento - 1;
+                edadActual = anioActual - anioNacimiento - 1;
 
             }
             Console.WriteLine("La edad actual es " + edadActual);
@@ -330,7 +330,6 @@
             {
                 Console.WriteLine("Ingrese una opcion 1 = muestra perímetro | 2 = muestra área");
                 opcionElegida = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine(opcionElegida);
             }
             while (opcionElegida != 1 && opcionElegida != 2);
             if (opcionElegida == 1)
