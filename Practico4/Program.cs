@@ -363,7 +363,7 @@
             {
                 cantidadPalabras++;
             }
-            Console.WriteLine(palabraActual);
+
             Console.WriteLine($"La cantidad de palabras separadas son {cantidadPalabras}");
         }
 
@@ -396,7 +396,7 @@
                         {
                             posicion++;
                         }
-                    } while (EsLetra(texto[posicion]) && posicion < limite);
+                    } while (!EsLetra(texto[posicion]) && posicion < limite);
                 }
 
             } while (posicion + 1 <= limite);
@@ -512,87 +512,76 @@
             return valor;
         }
 
-
-
-        static bool esNumeroValido(int n)
-        {
-            bool resultado;
-            if (n >= 1 && n <= 11)
-            {
-                resultado = true;
-            }
-            else
-            {
-                resultado = false;
-            }
-            return resultado;
-        }
-
         static void Main(string[] args)
         {
-
+            bool esValido;
             int numEjercicio;
             do
             {
                 Console.WriteLine("----------------------------------------\n");
                 Console.WriteLine("Ingrese un numero de ejercicio (1-11), pulse 0 para finalizar");
-                numEjercicio = numeroValido();
-                if (esNumeroValido(numEjercicio))
+                do
                 {
-
-                    if (numEjercicio == 1)
+                    esValido = int.TryParse(Console.ReadLine(), out numEjercicio);
+                    if (esValido)
                     {
-                        Ejercicio1();
-                    }
-                    else if (numEjercicio == 2)
-                    {
-                        Ejercicio2();
-                    }
-                    else if (numEjercicio == 3)
-                    {
-                        Ejercicio3();
-                    }
-                    else if (numEjercicio == 4)
-                    {
-                        Ejercicio4();
-                    }
-                    else if (numEjercicio == 5)
-                    {
-                        Ejercicio5();
-                    }
-                    else if (numEjercicio == 6)
-                    {
-                        Ejercicio6();
-                    }
-                    else if (numEjercicio == 7)
-                    {
-                        Ejercicio7();
-                    }
-                    else if (numEjercicio == 8)
-                    {
-                        Ejercicio8();
-                    }
-                    else if (numEjercicio == 9)
-                    {
-                        Ejercicio9();
-                    }
-                    else if (numEjercicio == 10)
-                    {
-                        Ejercicio10();
-                    }
-                    else if (numEjercicio == 11)
-                    {
-                        Ejercicio11_2();
+                        if (numEjercicio < 0 || numEjercicio > 11)
+                        {
+                            esValido = false;
+                            Console.WriteLine("Numero invalido, ingrese un numero entre 0 y 11");
+                        }
                     }
                     else
                     {
-                        Console.WriteLine("Ingrese un numero valido entre 0 y 11");
+                        Console.WriteLine("Por favor ingrese un numero entre 0 y 11");
                     }
-                }
-                else
+                } while (!esValido);
+
+                if (numEjercicio == 1)
                 {
-                    Console.WriteLine("El numero no es valido (0-11)");
+                    Ejercicio1();
                 }
+                else if (numEjercicio == 2)
+                {
+                    Ejercicio2();
+                }
+                else if (numEjercicio == 3)
+                {
+                    Ejercicio3();
+                }
+                else if (numEjercicio == 4)
+                {
+                    Ejercicio4();
+                }
+                else if (numEjercicio == 5)
+                {
+                    Ejercicio5();
+                }
+                else if (numEjercicio == 6)
+                {
+                    Ejercicio6();
+                }
+                else if (numEjercicio == 7)
+                {
+                    Ejercicio7();
+                }
+                else if (numEjercicio == 8)
+                {
+                    Ejercicio8();
+                }
+                else if (numEjercicio == 9)
+                {
+                    Ejercicio9();
+                }
+                else if (numEjercicio == 10)
+                {
+                    Ejercicio10();
+                }
+                else if (numEjercicio == 11)
+                {
+                    Ejercicio11_2();
+                }
+
             } while (numEjercicio != 0);
         }
     }
