@@ -1,10 +1,13 @@
-﻿namespace Practico3
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace Practico3
 {
     internal class Program
     {
+
         static void Main(string[] args)
         {
-            
+            /*
             //Ejercicio 1a
             int numero1a;
             Console.WriteLine("-----------1a numero par o impar------------");
@@ -432,6 +435,7 @@
                     Console.WriteLine("El triangulo es equilatero");
                 }
             }
+            */
             /*
             TryParse
             Console.WriteLine("Hola");
@@ -439,6 +443,46 @@
             if (!numerito) Console.WriteLine("Numero no valido");
             Console.WriteLine(res);
             */
+
+            /*
+             TryParse con repeat
+            Valores x ref   
+            int cuarentaydos = 42;
+            int ocho = 8;
+            Console.WriteLine(cuarentaydos);
+            Console.WriteLine(ocho);
+
+            static void suma2nums(ref int cuarentaydos, ref int ocho)
+            {
+                cuarentaydos += ocho;
+            }
+
+            Console.WriteLine(cuarentaydos);
+            suma2nums(ref cuarentaydos, ref ocho);
+            Console.WriteLine(cuarentaydos);
+            Console.WriteLine(ocho);
+            */
+            /*
+            Console.WriteLine("Escriba un numero");
+            bool numerito = false;
+            do
+            {
+               numerito = int.TryParse(Console.ReadLine(), out int res);
+                if (!numerito)
+                {
+                    Console.WriteLine("Numero no valido");
+                }
+                else
+                {
+
+                    Console.WriteLine("El numero es {0}", res);
+                }
+            }
+            while (!numerito);
+
+            */
+
         }
+
     }
 }
