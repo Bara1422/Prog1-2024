@@ -1,9 +1,42 @@
 ﻿using System.Security.Cryptography.X509Certificates;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Practico3
 {
     internal class Program
     {
+        static int LeerEnero(string mensaje)
+        {
+
+
+            Console.WriteLine(mensaje);
+            int numero = 0;
+            bool esEntero = false;
+            while (!esEntero)
+            {
+                string datoEntrada = Console.ReadLine();
+                //try parse (En ingles significa, intentar convertir)
+                //es una funcion que recibe como parametro un dato de entrada de tipo string
+                //y otro parametro, en este caso de salida umero entero
+                //lo convierte y lo asigna a numero
+                //si pasa esto TryParse retorna true, sino retorna false y numero no tiene asignacion
+                //bool boolcon = false; string booldata = "true"; bool.TryParse(booldata, out boolcon);
+                //double numero = 0.0;  string datoEntrada = "0.98";   double.TryParse(datoEntrada, out numero);
+
+                if (!int.TryParse(datoEntrada, out numero))
+
+                {
+
+                    Console.WriteLine("El numero no es un entero. Por favor ingreselo de nuevo:");
+                }
+                else
+                {
+                    esEntero = true;
+                }
+            }
+
+            return numero;
+        }
 
         static void Main(string[] args)
         {
@@ -479,10 +512,337 @@ namespace Practico3
                 }
             }
             while (!numerito);
+            
+            
 
-            */
+            Console.Write("Ingresa el primer numero: ");
+            int num1 = int.Parse(Console.ReadLine());
+            int num2 = num1;
+            string resultado = "";
+            for(int i = 2; i < num2 / 2; i++)
+            {
+                bool esModuloCero = true;
+                int cantidad = 0;
+                while(esModuloCero)
+                {
+                    int modulo = num1 % 1;
+                    if(modulo == 0)
+                    {
+                        cantidad++;
+                        num1 = num1 / i;
+                    }
+                    else
+                    {
+                        esModuloCero = false;
+                    }
+                }
+                if(cantidad > 0)
+                {
+                    if(resultado == "")
+                    {
+                        resultado = resultado + i + "^" + cantidad + " ";
+                    }
+                    else
+                    {
+                        resultado = resultado + " * " + i + " a la " + cantidad + " ";
+                    }
+                    
+                }
+                if (num1 > 1)
+                {
+                    if(resultado == "")
+                    {
+                        resultado = "" + num1;
+                    }
+                }else
+                {
+                    resultado = resultado + " * " + num2;
+                }
+            }
+            
+
+            bool esValido = false;
+            int numeroIngresado;
+            do
+            {
+                Console.WriteLine("ingrese numero valido");
+                esValido = int.TryParse(Console.ReadLine(), out numeroIngresado);
+            } while (!esValido);
+            int cantidad = 0;
+            for (int i = 2; i < numeroIngresado; i++)
+            {
+                while(numeroIngresado % i == 0)
+                {
+                    cantidad++;
+                    numeroIngresado = numeroIngresado / 2;
+                }
+            }*/
+            /*
+            int num1 = LeerEnero("Ingrese el numero a descomponer en numeros primos: ");
+
+            //seteo valores iniciales
+            int recorrerHastaNumero = num1 / 2;
+            string resultado = "";
+            //Caso especial si num1==1
+            if (num1 == 1)
+            {
+                Console.WriteLine(num1);
+            }
+            else
+            {
+                //Recorro los posibles numero, que se que son desde 2 a la mitad de num1
+
+                for (int i = 2; i < recorrerHastaNumero; i++)
+                {
+                    //Seteo la condicion de corte si es divisor, esModuloCero == true
+                    bool esModuloCero = true;
+                    //Reinicio la cantidad para que sea cero 
+                    int cantidad = 0;
+
+
+                    //Mientras  num1 mod i == 0, sumo en cantidad, todas las veces que num1 es divisible 
+                    //por i, por ejemplo 8, es igual a 2 al cubo entonces i == 2 y cantidad tiene 3
+                    //cuando modulo es distinto a cero significa q num1 ya no es mas divisible por i
+                    while (esModuloCero)
+                    {
+                        int modulo = num1 % i;
+                        if (modulo == 0)
+                        {
+                            cantidad++;
+                            num1 = num1 / i;
+                        }
+                        else
+                        {
+                            esModuloCero = false;
+                        }
+
+
+                    }
+                    //para descartar en el resultado los numeros que no son divisibles 
+                    //le agrego la condicion cantidad > 0
+
+                    if (cantidad > 0)
+                    {
+                        //este if tiene dos partes, una es el caso de inicio
+                        if (resultado == "")
+                        {
+                            resultado = i + "^" + cantidad + " ";
+
+                        }
+                        //y este es el caso que tengo que concatenar los resultados anteriores
+                        else
+                        {
+                            resultado = resultado + " * " + i + "^" + cantidad + " ";
+
+                        }
+                    }
+
+                }
+                Console.WriteLine(resultado);
+            }
+            bool esValido = false;
+            int numero;
+            do
+            {
+                Console.WriteLine("Ingrese un numero válido");
+                esValido = int.TryParse(Console.ReadLine(), out numero);
+                
+            } while (esValido == false);
+            
+
+            string resultado = "";
+            int divisor = 2; // Empezamos con el primer número primo
+
+            if(numero == 1)
+            {
+                Console.WriteLine("1^1");
+            }
+            while (numero > 1)
+            {
+                int contador = 0;
+
+                while (numero % divisor == 0)
+                {
+                    contador++;
+                    numero /= divisor;
+                }
+
+                if (contador > 0)
+                {
+                    resultado += $"{divisor}^{contador}";
+
+                    if (numero > 1)
+                    {
+                        resultado += " * ";
+                    }
+                }
+
+                divisor++;
+            }
+            Console.WriteLine(resultado);
+            
+            int numero;
+            bool esEntero;
+            do
+            {
+                Console.WriteLine("Escriba un número");
+                esEntero = int.TryParse(Console.ReadLine(), out numero);
+            } while (esEntero == false);
+
+            string resultado = "";
+            int divisor = 2;
+
+            while (numero > 1)
+            {
+                int cantidad = 0;
+                while (numero % divisor == 0)
+                {
+                    cantidad++;
+                    numero = numero / divisor;
+                }
+                if(cantidad > 0)
+                {
+                    resultado = resultado + $"{divisor}^{cantidad}";
+
+                    if(numero > 1)
+                    {
+                        resultado = resultado + " * ";
+                    }
+                }
+                divisor++;
+            }
+            Console.WriteLine(resultado);
+            
+            int numero;
+            bool esEntero;
+
+            do
+            {
+                Console.WriteLine("Ingrese un numero entero por favor.");
+                esEntero = int.TryParse(Console.ReadLine(), out numero);
+            } while (esEntero == false);
+
+            string resultado = "";
+
+            for(int i = 2; i <= numero; i++)
+            {
+                int cantidad = 0;
+                while(numero % i == 0)
+                {
+                    cantidad++;
+                    numero = numero / i;
+                }
+                if(cantidad > 0)
+                {
+                    resultado = resultado + $"{i}^{cantidad}";
+                    if(numero > 1)
+                    {
+                        resultado = resultado + $" * ";
+                    }
+                }
+            }
+            Console.WriteLine(resultado);
+
+            
+
+
+            Console.WriteLine("Ingrese el primer numero");
+            int numero1 = NumeroValido();
+            Console.WriteLine("Ingrese el segundo numero");
+            int numero2 = NumeroValido();
+            int numeroMasGrande = 0;
+            if(numero1 > numero2)
+            {
+                numeroMasGrande = numero1;
+            }else
+            {
+                numeroMasGrande = numero2;
+            }
+            int numeroActual;
+            int mcm = 0;
+            for(int i = 1; i <= numeroMasGrande; i++)
+            {
+                numeroActual = numero1 * i;
+                if(numeroActual % numero2 == 0)
+                {
+                    mcm = numeroActual;
+                    break;
+                }
+            }
+            Console.WriteLine(mcm);
+
 
         }
+        static int NumeroValido()
+        {
+            int numero = 0;
+            bool esValido;
+            do
+            {
+                esValido = int.TryParse(Console.ReadLine(), out numero);
+                if (!esValido)
+                {
+                    Console.WriteLine("Ingrese un numero valido");
+                }
+            } while(esValido == false);
+            return numero;
+            */
+            {
+                Validacion();
+            }
 
+            static void Descomposicion(int numDesc)
+            {
+                int i = 0;
+                int sumaFactores;
+                for (i = 2; i <= numDesc; i++)
+                {
+
+                    while (numDesc % i == 0)
+                    {
+
+                        Console.WriteLine(numDesc + "   ");
+
+                        Console.WriteLine("     " + i);
+
+                        numDesc = numDesc / i;
+
+                        sumaFactores += i;
+
+
+
+                    }
+
+
+
+                }
+
+                Console.WriteLine("La suma de factores es:" + sumaFactores);
+            }
+            static void Validacion()
+            {
+                string dato;
+                int numero;
+                Console.WriteLine("Ingrese un numero entero positivo");
+                dato = Console.ReadLine();
+                if (int.TryParse(dato, out numero))
+                {
+
+                    descomposicion(numero);
+                    if (numero < 0)
+                    {
+                        numero = numero * -1;
+
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Número erroneo, porfavor ingreselo nuevamente.");
+                    Validacion();
+
+                }
+            }
+        }
     }
+
 }
