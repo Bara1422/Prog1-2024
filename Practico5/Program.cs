@@ -93,10 +93,11 @@
                 esChar = char.TryParse(Console.ReadLine(), out caracter);
             } while (!esChar);
 
-            if(Es_Digito(caracter) == false)
+            if (Es_Digito(caracter) == false)
             {
                 Console.WriteLine($"{caracter} no es un digito");
-            }else
+            }
+            else
             {
                 Console.WriteLine($"{caracter} es un digito");
             }
@@ -104,12 +105,12 @@
 
         static double RedondearCentesima(double numero)
         {
-            
+
             double numeroMitad = Math.Round(numero, 2);
-            
-            
+
+
             Console.WriteLine(numeroMitad);
-            
+
             return numeroMitad;
         }
 
@@ -121,16 +122,100 @@
             do
             {
                 Console.WriteLine("Ingrese un numero con decimales");
-                esNum = double.TryParse(Console.ReadLine(),out numero);
+                esNum = double.TryParse(Console.ReadLine(), out numero);
             } while (!esNum);
 
             RedondearCentesima(numero);
-
         }
 
+        static bool EsBisiesto(int anio)
+        {
+            if (anio % 4 == 0 && (anio % 100 != 0 || anio % 400 == 0))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        static bool EsNumeroValido(string mensaje, out int numero)
+        {
+            int[] meses31 = { 1, 3, 5, 7, 8, 10, 12 };
+            bool esValido = false;
+            numero = 0;
+            Console.WriteLine($"Ingrese un {mensaje} valido");
+            do
+            {
+                esValido = int.TryParse(Console.ReadLine(), out numero);
+                if (mensaje == "dia")
+                {
+                    if (numero < 1 || numero > 31)
+                    {
+                        esValido = false;
+                        Console.WriteLine($"Ingrese un {mensaje} entre 1 y 31");
+                    }
+                }
+                if (mensaje == "mes")
+                {
+                    if (numero < 1 || numero > 12)
+                    {
+                        esValido = false;
+                        Console.WriteLine($"Ingrese un {mensaje} entre 1 y 12");
+                    }
+                }
+                if (mensaje == "anio")
+                {
+                    if (numero < 1)
+                    {
+                        esValido = false;
+                        Console.WriteLine($"Ingrese un {mensaje} mayor a 0");
+                    }
+                }
+            } while (!esValido);
+            return esValido;
+        }
+        static void Ejercicio7()
+        {
+            int dia, mes, anio;
+            bool mesContieneDia = false;
+            
+            Console.WriteLine("Ejercicio 7 es bisiesto?");
+            EsNumeroValido("dia", out dia);
+            do
+            {
+                EsNumeroValido("mes", out mes);
+                if ((mes == 4 || mes == 6 || mes == 9 || mes == 11) && dia == 31)
+                {
+                    Console.WriteLine($"El mes {mes} no tiene {dia} dias");
+                }
+                else if (mes == 2 && dia >= 30)
+                {
+                    Console.WriteLine($"El mes {mes} no tiene {dia} dias");
+                }else
+                {
+                    mesContieneDia = true;
+                }
+            } while (mesContieneDia == false);
+
+            EsNumeroValido("anio", out anio);
+
+            Console.WriteLine(dia);
+            Console.WriteLine(mes);
+            Console.WriteLine(anio);
+            if(EsBisiesto(anio))
+            {
+                Console.WriteLine($"La fecha {dia}/{mes}/{anio} es de un anio biciesto");
+            }
+            else
+            {
+                Console.WriteLine($"La fecha {dia}/{mes}/{anio} no es de un anio biciesto");
+            }
+        }
         static void Main(string[] args)
         {
-            Ejercicio5();
+            Ejercicio7();
         }
     }
 }
