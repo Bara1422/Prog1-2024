@@ -260,11 +260,13 @@
             }
         }
 
-        static void AgregarElementoALista(int[] array, ref int UltPos)
+        static int[] AgregarElementoALista(int[] array, ref int UltPos)
         {
             UltPos++;
             int numeroAAgregar = NumeroValido("Ingrese el numero a agregar");
             array[UltPos] = numeroAAgregar;
+
+            return array;
         }
 
         static void OrdenarLista(int[] array, ref int UltPos)
@@ -283,10 +285,18 @@
             }
         }
 
-        static void BorrarElementoDeLaLista(int[] array, ref int UltPos)
+        static int[] BorrarElementoDeLaLista(int[] array, ref int UltPos)
         {
             int numeroIndice = NumeroValido("Ingrese el indice que quiere borrar del array");
-            array[numeroIndice] = 0;
+            if (numeroIndice <= UltPos)
+            {
+                for(int i = numeroIndice; i <= UltPos; i++)
+                {
+                    array[i] = array[i + 1];
+                }
+                UltPos--;
+            }
+            return array;
         }
 
         static void Ejercicio7()
@@ -319,13 +329,15 @@
 
             if (numeroIngresado == 1)
             {
-                AgregarElementoALista(array, ref UltPos);
+               array = AgregarElementoALista(array, ref UltPos);
                 OrdenarLista(array, ref UltPos);
             }
             else if (numeroIngresado == 2)
             {
-
+               array = BorrarElementoDeLaLista(array, ref UltPos);
+                Console.WriteLine(UltPos);
             }
+
             foreach (int i in array)
             {
                 Console.Write($"{i} ");
