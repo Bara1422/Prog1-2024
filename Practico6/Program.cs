@@ -139,13 +139,13 @@
             double notaValida;
             do
             {
-                Console.Write(mensaje);
-            }while(!double.TryParse(Console.ReadLine(), out notaValida));
+                Console.Write($"{mensaje}: ");
+            } while (!double.TryParse(Console.ReadLine(), out notaValida));
             return notaValida;
         }
-        
 
-      
+
+
 
         static void Ejercicio4()
         {
@@ -168,7 +168,7 @@
             // }
 
             int indiceNotaMasAlta = 0;
-            for(int i = 0; i < notasAlumnos.Length;i++)
+            for (int i = 0; i < notasAlumnos.Length; i++)
             {
                 if (notasAlumnos[i] > notaMasAlta)
                 {
@@ -186,15 +186,194 @@
             do
             {
                 Console.WriteLine("Ingrese un numero");
-            }while(!int.TryParse(Console.ReadLine(), out numero));
+            } while (!int.TryParse(Console.ReadLine(), out numero));
             //int cantDigitosNumero = numero.Split("");
-            int[] arrDigitos = new int[numero];
+            string numeroString = numero.ToString();
+            int[] stringsNumero = new int[numeroString.Length];
+            int numeroMayor = 0;
+            int indiceNumeroMayor = 0;
+
+            for (int i = 0; i < numeroString.Length; i++)
+            {
+                stringsNumero[i] = numeroString[i] - '0';
+                if (stringsNumero[i] > numeroMayor)
+                {
+                    numeroMayor = stringsNumero[i];
+                    indiceNumeroMayor = i;
+                }
+                Console.Write($"{stringsNumero[i]} - ");
+            }
+
+            Console.WriteLine($"El mayor numero es {numeroMayor} y su indice es {indiceNumeroMayor}");
+        }
+
+        public struct AlumnoEj6
+        {
+            public string nombreAlumno;
+            public string apellidoAlumno;
+            public double notaAlumno;
 
         }
 
+        static AlumnoEj6 AgregarAlumnoEj6()
+        {
+
+
+            AlumnoEj6 alumno = new AlumnoEj6();
+            Console.Write("Ingrese apellido del alumno: ");
+            alumno.nombreAlumno = Console.ReadLine();
+            Console.Write("Ingrese nombre del alumno: ");
+            alumno.apellidoAlumno = Console.ReadLine();
+            alumno.notaAlumno = NotaValida("Ingrese la nota del alumno");
+
+            return alumno;
+        }
+
+        static void Ejercicio6()
+        {
+            Console.WriteLine("Cargar lista alumnos y notas, generar lista si aporbaon o no (aprueba 40)");
+            int numeroAlumnos;
+            do
+            {
+                Console.Write("Ingrese cantidad alumnos: ");
+            } while (!int.TryParse(Console.ReadLine(), out numeroAlumnos));
+            List<AlumnoEj6> listAlumnosEj6 = new List<AlumnoEj6>();
+
+            for (int i = 0; i < numeroAlumnos; i++)
+            {
+                AlumnoEj6 alumno = AgregarAlumnoEj6();
+                listAlumnosEj6.Add(alumno);
+            }
+            string linea = "Nombre".PadRight(25) + "NOTA".PadRight(10) + "Resultado";
+            foreach (AlumnoEj6 alumnoEnLista in listAlumnosEj6)
+            {
+                string aprobadoOReprobado;
+                if (alumnoEnLista.notaAlumno >= 40)
+                {
+                    aprobadoOReprobado = "Aprobado";
+                }
+                else
+                {
+                    aprobadoOReprobado = "Reprobado";
+                }
+                Console.WriteLine($"{alumnoEnLista.apellidoAlumno}, {alumnoEnLista.nombreAlumno} \t {alumnoEnLista.notaAlumno.ToString().PadRight(30)} \t {aprobadoOReprobado.PadRight(30)}");
+            }
+        }
+
+        static void AgregarElementoALista(int[] array, ref int UltPos)
+        {
+            UltPos++;
+            int numeroAAgregar = NumeroValido("Ingrese el numero a agregar");
+            array[UltPos] = numeroAAgregar;
+        }
+
+        static void OrdenarLista(int[] array, ref int UltPos)
+        {
+            for (int i = 0; i < UltPos; i++)
+            {
+                for (int j = 0; j < UltPos - i; j++)
+                {
+                    if (array[j] > array[j + 1])
+                    {
+                        int temporal = array[j];
+                        array[j] = array[j + 1];
+                        array[j + 1] = temporal;
+                    }
+                }
+            }
+        }
+
+        static void BorrarElementoDeLaLista(int[] array, ref int UltPos)
+        {
+            int numeroIndice = NumeroValido("Ingrese el indice que quiere borrar del array");
+            array[numeroIndice] = 0;
+        }
+
+        static void Ejercicio7()
+        {
+            Console.WriteLine("Dada long maxima de una lista ordenada en MaxPos y cantidad realmente ocupada UltPos");
+            Console.WriteLine("Agregar y borrar elementos de la lista, mantener lista ordenada");
+            Console.WriteLine("Agregar menu: agregar elementos, borrar elementos, mostrar lista y salir");
+
+
+            int MaxPos = NumeroValido("Cantidad maxima del array");
+            int[] array = new int[MaxPos + 1];
+            int UltPos = NumeroValido("Ultima posicion actual del array");
+            if (UltPos > 0)
+            {
+                for (int i = 0; i <= UltPos; i++)
+                {
+                    array[i] = NumeroValido($"Ingrese el numero para el indice {i}");
+                }
+            }
+            OrdenarLista(array, ref UltPos);
+
+            int numeroIngresado;
+            do
+            {
+                Console.WriteLine("Si desea agregar elementos presione 1");
+                Console.WriteLine("Si desea borrar elementos presione 2");
+                Console.WriteLine("Si desea mostrar la lista presione 3");
+                Console.WriteLine("Si desea salir presione 0");
+            } while (!int.TryParse(Console.ReadLine(), out numeroIngresado) && (numeroIngresado != 1 || numeroIngresado != 2 || numeroIngresado != 3 || numeroIngresado != 0));
+
+            if (numeroIngresado == 1)
+            {
+                AgregarElementoALista(array, ref UltPos);
+                OrdenarLista(array, ref UltPos);
+            }
+            else if (numeroIngresado == 2)
+            {
+
+            }
+            foreach (int i in array)
+            {
+                Console.Write($"{i} ");
+            }
+        }
+
+        /*static int[] AlgoritmoBurbuja(int[] listaNumeros)
+        {
+            int cantidad = listaNumeros.Length;
+            bool cambieOrdenamiento = false;
+            int temporal = 0;
+            int i = 0;
+            while (i < cantidad && cambieOrdenamiento)
+            {
+                cambieOrdenamiento = false;
+                for(int j = 0; j < cantidad - 1; j++)
+                {
+                    cambieOrdenamiento |= true;
+                    temporal = listaNumeros[j];
+                    listaNumeros[j] = listaNumeros[j + 1];
+                    listaNumeros[j+1] = temporal;
+
+                    Console.WriteLine();
+                }
+            }
+            return listaNumeros;
+        } */
+
+        //STRUCT
+        //ARCHIVOS
+        //LISTAS
+        // PROYECTO
+        // HACER APPLICACION MENU COMO PROYECTO SUBIDO AL AULA
+        // 3 ELEMENTOS ALUMNOS MAT INSCRIP
+        // INSCP ALUMNO ANOTADO Y NOTA FINAL
+        // METODO BURBUJA ORDENAR NOTAS FINALES DE UNA MATERIA
+        // CON ABM
+        // PROGRAMA NO TERMINA AL INGRESAR EL PRIMER DATO
+        // LEGAJO NO SE PUEDE MODIFICAR
+        // INSCRIBIR A MATERIA, ACTUALIZAR NOTA
+        // EXISIST A MANO
+        // PACIAL 19 MIERCOLES ARCHIVOS STRUC LISTA
+        // 26 RECUPERATORIO
+        // PROYECTO 26
+
         static void Main(string[] args)
         {
-            Ejercicio4();
+            Ejercicio7();
         }
     }
 }
